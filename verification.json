@@ -1,0 +1,85 @@
+{
+ "passed": true,
+ "device": "cuda",
+ "load_seconds": 10.7,
+ "examples": [
+  {
+   "example": "circuit_real_C164_D1_P1",
+   "family": "circuit",
+   "masked_f1": 0.9380231529037096,
+   "expected": 0.9380231529037096,
+   "accepted": 1,
+   "expected_accepted": 1,
+   "known_pixels_unchanged": true,
+   "seconds": 3.9,
+   "passed": true
+  },
+  {
+   "example": "circuit_rendered_005803",
+   "family": "circuit",
+   "masked_f1": 0.9750445632798574,
+   "expected": 0.9750445632798574,
+   "accepted": 1,
+   "expected_accepted": 1,
+   "known_pixels_unchanged": true,
+   "seconds": 3.1,
+   "passed": true
+  },
+  {
+   "example": "flowchart_real_ex01_writer0019",
+   "family": "flowchart",
+   "masked_f1": 0.3734947955643241,
+   "expected": 0.3734947955643241,
+   "accepted": 0,
+   "expected_accepted": 0,
+   "known_pixels_unchanged": true,
+   "seconds": 9.9,
+   "passed": true
+  },
+  {
+   "example": "flowchart_rendered_005799",
+   "family": "flowchart",
+   "masked_f1": 0.8488888888888889,
+   "expected": 0.8488888888888889,
+   "accepted": 2,
+   "expected_accepted": 2,
+   "known_pixels_unchanged": true,
+   "seconds": 3.6,
+   "passed": true
+  },
+  {
+   "example": "molecule_real_US07049314-20060523-C00070",
+   "family": "molecule",
+   "masked_f1": 0.5472910927456383,
+   "expected": 0.5472910927456383,
+   "accepted": 0,
+   "expected_accepted": 0,
+   "known_pixels_unchanged": true,
+   "seconds": 0.5,
+   "passed": true
+  },
+  {
+   "example": "molecule_rendered_US06866837-20050315-C00002",
+   "family": "molecule",
+   "masked_f1": 0.6657771847898599,
+   "expected": 0.6657771847898599,
+   "accepted": 0,
+   "expected_accepted": 0,
+   "known_pixels_unchanged": true,
+   "seconds": 0.5,
+   "passed": true
+  }
+ ],
+ "gpu": "NVIDIA A40",
+ "peak_gpu_memory_gb": 8.06,
+ "torch_arch_list": [
+  "sm_50",
+  "sm_60",
+  "sm_70",
+  "sm_75",
+  "sm_80",
+  "sm_86",
+  "sm_37",
+  "sm_90"
+ ]
+}

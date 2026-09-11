@@ -1,0 +1,7 @@
+python 3.12.13
+torch 2.6.0+cu118 | built for CUDA 11.8 | cudnn 90100
+transformers 4.46.3
+numpy 2.4.4 | pillow 12.2.0 | opencv 5.0.0 | scipy 1.18.0
+supported GPU architectures (torch build): sm_37 sm_50 sm_60 sm_70 sm_75 sm_80 sm_86 sm_90
+NVIDIA driver used for validation: 610.43.02
+verified on: NVIDIA A40, peak GPU memory 8.06 GB (see verification.json)

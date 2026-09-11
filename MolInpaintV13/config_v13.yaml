@@ -1,0 +1,37 @@
+# Configuration of the V13 restoration system (inference). Paths are relative to this file.
+weights:
+  vllm: ../weights/vllm
+  coarse_model: ../weights/coarse_model_v13.pt
+  page_adapter: ../weights/page_adapter_v13.pt
+  page_adapter_refined: ../weights/page_adapter_refined_v13.pt
+  placement_scorer: ../weights/placement_scorer_v13.pt
+  font: ../weights/DejaVuSans.ttf
+
+# How the VLLM reads a page (the settings it was fine-tuned with).
+vllm:
+  attn_implementation: eager
+  image_size: 768
+  base_size: 768
+  crop_mode: false
+  max_new_tokens: 512        # cap on the length of the serialisation
+  mask_overlay:              # covered pixels are tinted towards this colour
+    mode: tint
+    color: [255, 40, 40]
+    alpha: 0.35
+
+# Page adapter used for each family (a key of `weights`).
+page_adapter:
+  molecule: page_adapter
+  flowchart: page_adapter
+  circuit: page_adapter_refined
+
+# Families that go through the text stage.
+text_stage: [flowchart, circuit]
+
+# Text regions: connected components of the predicted text-location map (1024 px page).
+detector:
+  threshold: 0.40            # location probability
+  min_area: 12               # box area in pixels
+  max_height_fraction: 0.18  # of the page height
+  max_regions: 64            # damaged regions per page
+  padding: 2                 # pixels added around each component

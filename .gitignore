@@ -1,0 +1,17 @@
+# Files kept out of the FigRestore Git repository.
+
+# Weights above GitHub's 100 MB file limit. Share them separately (for example on the
+# Hugging Face Hub) and place them at these paths; MANIFEST.sha256 lists their checksums.
+weights/vllm/*.safetensors
+weights/coarse_model_v13.pt
+
+# Created when the system runs
+.cache/
+__pycache__/
+*.py[cod]
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+.DS_Store
