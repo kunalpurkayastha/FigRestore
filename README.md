@@ -126,46 +126,6 @@ and `coarse_model_v13.pt` exceed the 100 MB file limit of GitHub. `.gitignore` l
 the Git repository, so after cloning they have to be copied into the same paths under `weights/`.
 `MANIFEST.sha256` lists their checksums.
 
-## Verification
-
-`python MolInpaintV13/verify_v13.py` restores the six examples. It compares each result with the
-values recorded when the full validation split of 537 damaged pages was evaluated. The results
-below are from an NVIDIA A40 and are stored in `verification.json`.
-
-| Example | Source | Masked F1 | Recorded | Text repairs | Time |
-|---|---|---|---|---|---|
-| `circuit_real_C164_D1_P1` | CGHD (real) | 0.9380 | 0.9380 | 1 | 3.9 s |
-| `circuit_rendered_005803` | rendered | 0.9750 | 0.9750 | 1 | 3.1 s |
-| `flowchart_real_ex01_writer0019` | hdBPMN (real) | 0.3735 | 0.3735 | 0 | 9.9 s |
-| `flowchart_rendered_005799` | rendered | 0.8489 | 0.8489 | 2 | 3.6 s |
-| `molecule_real_US07049314-20060523-C00070` | USPTO (real) | 0.5473 | 0.5473 | 0 | 0.5 s |
-| `molecule_rendered_US06866837-20050315-C00002` | rendered | 0.6658 | 0.6658 | 0 | 0.5 s |
-
-All six examples reproduce the recorded values, and no visible pixel changes. Loading the models
-takes about 11 s. Molecules run faster because they skip the VLLM serialisation. A run traced
-with `strace` opened files only in this folder, the Python environment, system directories and
-temporary directories. A copy of the folder at another path produced the same output. The files
-in `environment/` were exported from the environment used for this check. Building a new
-environment from them has not been tested.
-
-## Notes
-
-- On the first run, Transformers prints a notice about an outdated offline cache. The notice is
-  harmless.
-- The Hugging Face cache is written to `.cache/` inside this folder and contains a copy of the
-  VLLM's remote code. Set `HF_HOME` if the folder is read-only.
-- The serialisation uses the VLLM's own generation code, which places tensors on CUDA. Flowcharts
-  and circuits therefore need a GPU.
-
-## Limitations
-
-- Label text comes from the VLLM. For a covered label, its output is limited to the phrases it
-  was trained on.
-- The glyph prior is a printed font, so the text stage rarely acts on hand-drawn or scanned pages.
-  On such pages the output is the page reconstruction.
-- The models were trained on rendered molecules, flowcharts and circuits and on three real
-  sources: USPTO patent drawings, CGHD hand-drawn circuits and hdBPMN hand-drawn diagrams.
-
 ## Licence
 
 The VLLM weights are derived from DeepSeek-OCR-2. The DeepSeek-OCR-2 licence is in
